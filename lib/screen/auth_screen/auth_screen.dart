@@ -53,27 +53,41 @@ class _AuthScreenState extends State<AuthScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                TextField(
-                  style: const TextStyle(color: Colors.white),
-                  cursorColor: Colors.white,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.email,
-                        color: Colors.white60,
-                      ),
-                      hintText: "Email",
-                      hintStyle: const TextStyle(color: Colors.white),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                      border: const OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      fillColor: Colors.grey.shade600,
-                      filled: true),
-                )
+                CustomTextField()
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: TextField(
+        style: const TextStyle(color: Colors.white),
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+            prefixIcon: const Icon(
+              Icons.email,
+              color: Colors.white60,
+            ),
+            hintText: "Email",
+            hintStyle: const TextStyle(color: Colors.white),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+            border: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            fillColor: Colors.grey.shade600,
+            filled: true),
       ),
     );
   }
