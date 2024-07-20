@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:ecommerce_app/screen/auth_screen/widget/CustomTextField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,75 +20,60 @@ class _AuthScreenState extends State<AuthScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: size.width,
-            height: size.height * 0.25,
-            decoration: const BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25)),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/auth_banner.jpg'))),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Create Account',
-                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  'signup up with your User Account',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextField()
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: size.width,
+              height: size.height * 0.25,
+              decoration: const BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25)),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/auth_banner.jpg'))),
             ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: TextField(
-        style: const TextStyle(color: Colors.white),
-        cursorColor: Colors.white,
-        decoration: InputDecoration(
-            prefixIcon: const Icon(
-              Icons.email,
-              color: Colors.white60,
+            const SizedBox(
+              height: 10,
             ),
-            hintText: "Email",
-            hintStyle: const TextStyle(color: Colors.white),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-            border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            fillColor: Colors.grey.shade600,
-            filled: true),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Create Account',
+                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'signup up with your User Account',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                    hintText: "Email",
+                    iconData: Icons.email,
+                  ),
+                  CustomTextField(
+                    hintText: "Password",
+                    iconData: Icons.password_rounded,
+                    isPassword: true,
+                  ),
+                  CustomTextField(
+                    hintText: "confirm Password",
+                    iconData: Icons.password_rounded,
+                    isPassword: true,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
