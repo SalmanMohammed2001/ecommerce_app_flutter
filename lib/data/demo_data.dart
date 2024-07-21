@@ -20,26 +20,26 @@ class DemoData {
 
   static List<Product> products = [
     Product(
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15pro-digitalmat-gallery-1-202309_GEO_US?wid=728&hei=666&fmt=png-alpha&.v=1693346851451',
+        image: 'https://static.doji.co/product/medias/smartphones/apple/iphone-13-pro-max/back_front-alpine-green.png',
         price: 999,
         name: 'Iphone 15 pro'),
 
     Product(
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13-digitalmat-gallery-3-202203?wid=728&hei=666&fmt=png-alpha&.v=1644988765122',
+        image: 'https://static.doji.co/product/medias/smartphones/apple/iphone-13-pro-max/back_front-gold.png',
         price: 780,
         name: 'Iphone 13 '),
 
     Product(
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-3-202209?wid=728&hei=666&fmt=png-alpha&.v=1662055813794',
+        image: 'https://static.doji.co/product/medias/smartphones/apple/iphone-14/1-front-back-midnight.png',
         price: 850,
         name: 'Iphone 14 '),
     Product(
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphonese-digitalmat-gallery-3-202203?wid=728&hei=666&fmt=png-alpha&.v=1644987579761',
+        image: 'https://static.doji.co/product/medias/smartphones/apple/iphone-se-(2020)/1-front-black.png',
         price: 750,
         name: 'Iphone SE '),
 
     Product(
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-4-202309?wid=728&hei=666&fmt=png-alpha&.v=1693011169045',
+        image: 'https://static.doji.co/product/medias/smartphones/apple/iphone-14-plus/1-front-back-yellow.png',
         price: 900,
         name: 'Iphone 14 Plus '),
 

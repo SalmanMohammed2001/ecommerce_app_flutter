@@ -43,19 +43,71 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Take a look at what’s new, right now.",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+
                 GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: DemoData.products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                    itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.99,
+                            crossAxisSpacing: 15,
+                            mainAxisSpacing: 5),
+                    itemBuilder: (context, index) => SizedBox(
+                          height: 200,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Container(
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black87,
+                                      borderRadius: BorderRadius.circular(25)),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Image.network(
+                                  DemoData.products[index].image,
+                                  height: 100,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      DemoData.products[index].name,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      '\$ ${DemoData.products[index].price}',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+* Card(
                             color: Colors.white,
                             shape: BeveledRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
@@ -95,12 +147,4 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           ),
-                        ))
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+* */
