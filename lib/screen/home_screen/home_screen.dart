@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Stack(
                                   children: [
                                     Align(
-                                      alignment: Alignment.bottomCenter,
+                                     alignment: Alignment.bottomCenter,
                                       child: Container(
                                         width: 120,
                                         height: 100,
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: Alignment.bottomCenter,
+                                      //alignment: Alignment.topCenter,
                                       child: Column(
                                         children: [
                                           Image.asset(

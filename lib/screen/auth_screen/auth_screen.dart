@@ -1,14 +1,10 @@
-import 'dart:ui';
-
 import 'package:ecommerce_app/screen/auth_screen/widget/CustomTextField.dart';
-import 'package:ecommerce_app/screen/home_screen/home_screen.dart';
-import 'package:ecommerce_app/utils/custom_navigator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../components/buttons/custom_button.dart';
+import '../../utils/custom_navigator.dart';
+import '../home_screen/home_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -18,7 +14,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool isSignUp = true;
+  String type = 'signup';
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +47,20 @@ class _AuthScreenState extends State<AuthScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isSignUp ? 'Create Account' : "Sign In",
+                    type == "signup"
+                        ? 'Create Account'
+                        : type == "signin"
+                            ? "Sign In"
+                            : "Forgot Password",
                     style: const TextStyle(
                         fontSize: 23, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    isSignUp
+                    type == "signup"
                         ? 'signup up with your User Account'
-                        : "Connect with Your User account",
+                        : type == "signin"
+                            ? "Connect with Your User account"
+                            : "Please Enter Your email",
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w400),
                   ),
@@ -69,23 +71,29 @@ class _AuthScreenState extends State<AuthScreen> {
                     hintText: "Email",
                     iconData: Icons.email,
                   ),
-                  const CustomTextField(
-                    hintText: "Password",
-                    iconData: Icons.password_rounded,
-                    isPassword: true,
-                  ),
-                  isSignUp
+                  type != "forgot"
+                      ? const CustomTextField(
+                          hintText: "Password",
+                          iconData: Icons.password_rounded,
+                          isPassword: true,
+                        )
+                      : const SizedBox(),
+                  type != "signin"
                       ? const SizedBox()
                       : Align(
                           alignment: Alignment.bottomRight,
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  type = "forgot";
+                                });
+                              },
                               child: const Text(
                                 "Forgot Password",
                                 style: TextStyle(color: Colors.black),
                               )),
                         ),
-                  isSignUp
+                  type == "signup"
                       ? const CustomTextField(
                           hintText: "confirm Password",
                           iconData: Icons.password_rounded,
@@ -97,19 +105,33 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   CustomButton(
                     size: size,
-                    text: isSignUp ? "Sign up" : "Sign In",
+                    text: type == "signup"
+                        ? "Sign up"
+                        : type == "signin"
+                            ? "Sign In"
+                            : "Send Reset Email ",
                     ontap: () {
                       CustomNavigator.push(context, const HomeScreen());
                     },
                   ),
                   CustomButton(
                     size: size,
-                    text: isSignUp ? "Sign in" : "Sign Up",
+                    text: type == "signup"
+                        ? "Sign In"
+                        : type == "signin"
+                            ? "Sign Up"
+                            : 'Cancel',
                     bgColor: Colors.white,
                     fontColor: Colors.black,
                     ontap: () {
                       setState(() {
-                        isSignUp = !isSignUp;
+                        if (type == "signin") {
+                          type = "signup";
+                        } else if(type == "signup") {
+                          type = "signin";
+                        }else{
+                          type = "signup";
+                        }
                       });
                     },
                   )
