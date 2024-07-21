@@ -43,6 +43,44 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10,
               ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                      DemoData.categories.length,
+                      (index) => Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: SizedBox(
+                                width: 120,
+                                height: 120,
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
+                                        width: 120,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.shade700,
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                              DemoData.categories[index].image),
+                                          Text(DemoData.categories[index].name,style: TextStyle(color: Colors.white),)
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                )),
+                          )),
+                ),
+              )
             ],
           ),
         ),

@@ -1,3 +1,5 @@
+import '../models/CategoryModel.dart';
+
 class DemoData{
 
   static List<String> sliderImages = [
@@ -7,13 +9,13 @@ class DemoData{
     'https://sempreupdate.com.br/wp-content/uploads/2023/10/ios-17-1-promete-mudancas-emocionantes-para-o-seu-iphone-860x484.jpg',
   ];
 
-  // static List<CategoryModel> categories = [
-  //   CategoryModel(image: 'assets/images/mac.png', name: 'Mac'),
-  //   CategoryModel(image: 'assets/images/ipad.png', name: 'i Pad'),
-  //   CategoryModel(image: 'assets/images/iphone.png', name: 'i Phone'),
-  //   CategoryModel(image: 'assets/images/watch.png', name: 'Watch'),
-  //   CategoryModel(image: 'assets/images/airpods.png', name: 'AirPods'),
-  // ];
+  static List<CategoryModel> categories = [
+    CategoryModel(image: 'assets/images/mac.png', name: 'Mac'),
+    CategoryModel(image: 'assets/images/ipad.png', name: 'i Pad'),
+    CategoryModel(image: 'assets/images/iphone.png', name: 'i Phone'),
+    CategoryModel(image: 'assets/images/watch.png', name: 'Watch'),
+    CategoryModel(image: 'assets/images/airpods.png', name: 'AirPods'),
+  ];
 
 
 }
