@@ -1,4 +1,5 @@
 
+import 'package:ecommerce_app/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -28,10 +29,10 @@ class CustomAppBar extends StatelessWidget {
               "Apple Store",
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
-            const CircleAvatar(
-              radius: 15,
-              backgroundImage: NetworkImage("https://e0.pxfuel.com/wallpapers/105/23/desktop-wallpaper-compromised-character-gaming-profile-dark-cute-cartoon-boys.jpg"),
-            )
+           IconButton(onPressed: () {
+             AuthController.signOutAccount();
+
+           }, icon: const Icon(Icons.exit_to_app,color: Colors.white,))
           ],
         ),
       ),
