@@ -1,8 +1,10 @@
 import 'package:ecommerce_app/controllers/auth_controller.dart';
+import 'package:ecommerce_app/provider/auth_screen_provider.dart';
 import 'package:ecommerce_app/screen/auth_screen/widget/CustomTextField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../components/buttons/custom_button.dart';
 import '../../utils/custom_navigator.dart';
@@ -17,8 +19,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   String type = 'signup';
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +75,14 @@ class _AuthScreenState extends State<AuthScreen> {
                    CustomTextField(
                     hintText: "Email",
                     iconData: Icons.email,
-                    controller:emailController ,
+                    controller:null ,
                   ),
                   type != "forgot"
                       ?  CustomTextField(
                           hintText: "Password",
                           iconData: Icons.password_rounded,
                           isPassword: true,
-                    controller: passwordController,
+                    controller: null,
                         )
                       : const SizedBox(),
                   type != "signin"
@@ -117,8 +118,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ? "Sign In"
                             : "Send Reset Email ",
                     ontap: () {
-                    //  CustomNavigator.push(context, const HomeScreen());
-                      AuthController.createUserAccount(emailController.text, passwordController.text);
+
                     },
                   ),
                   CustomButton(

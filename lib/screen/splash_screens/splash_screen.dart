@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/screen/auth_screen/auth_screen.dart';
+import 'package:ecommerce_app/screen/auth_screen/auth_state_screen.dart';
 import 'package:ecommerce_app/screen/home_screen/home_screen.dart';
 import 'package:ecommerce_app/utils/custom_navigator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,18 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(const Duration(seconds: 3),()
     {
-      FirebaseAuth.instance
-          .authStateChanges()
-          .listen((User? user) {
-        if (user == null) {
-          Logger().e('User is currently signed out!');
-          CustomNavigator.push(context, const AuthScreen());
-        } else {
-          Logger().f('User is signed in!');
-          CustomNavigator.push(context, const HomeScreen());
-        }
-      });
-
+      CustomNavigator.pushReplacement(context, AuthStateScreen());
      //
     });
 

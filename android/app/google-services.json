@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "217931886509",
+    "project_id": "apple-ecommerce-0",
+    "storage_bucket": "apple-ecommerce-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217931886509:android:0a150ec7803ac8823bbb24",
+        "android_client_info": {
+          "package_name": "lk.apple.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp6z1uE0KtnWVT8lx1lU-kgezFAEfAz6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
