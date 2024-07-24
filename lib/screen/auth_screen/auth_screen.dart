@@ -28,124 +28,129 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: size.width,
-              height: size.height * 0.25,
-              decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(25),
-                      bottomRight: Radius.circular(25)),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/auth_banner.jpg'))),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    type == "signup"
-                        ? 'Create Account'
-                        : type == "signin"
+        child: Consumer<AuthScreenProvider>(
+          builder: (context,authStatus,child) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: size.width,
+                  height: size.height * 0.25,
+                  decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(25),
+                          bottomRight: Radius.circular(25)),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/auth_banner.jpg'))),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        type == "signup"
+                            ? 'Create Account'
+                            : type == "signin"
+                                ? "Sign In"
+                                : "Forgot Password",
+                        style: const TextStyle(
+                            fontSize: 23, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        type == "signup"
+                            ? 'signup up with your User Account'
+                            : type == "signin"
+                                ? "Connect with Your User account"
+                                : "Please Enter Your email",
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                       CustomTextField(
+                        hintText: "Email",
+                        iconData: Icons.email,
+                        controller:authStatus.emailController ,
+                      ),
+                      type != "forgot"
+                          ?  CustomTextField(
+                              hintText: "Password",
+                              iconData: Icons.password_rounded,
+                              isPassword: true,
+                        controller: authStatus.passwordController,
+                            )
+                          : const SizedBox(),
+                      type != "signin"
+                          ? const SizedBox()
+                          : Align(
+                              alignment: Alignment.bottomRight,
+                              child: TextButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      type = "forgot";
+                                    });
+                                  },
+                                  child: const Text(
+                                    "Forgot Password",
+                                    style: TextStyle(color: Colors.black),
+                                  )),
+                            ),
+                      type == "signup"
+                          ?  CustomTextField(
+                              hintText: "confirm Password",
+                              iconData: Icons.password_rounded,
+                              isPassword: true,
+                              controller: authStatus.confirmPasswordController,
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomButton(
+                        size: size,
+                        text: type == "signup"
+                            ? "Sign up"
+                            : type == "signin"
+                                ? "Sign In"
+                                : "Send Reset Email ",
+                        ontap: () {
+                           authStatus.startSignUp();
+                        },
+                      ),
+                      CustomButton(
+                        size: size,
+                        text: type == "signup"
                             ? "Sign In"
-                            : "Forgot Password",
-                    style: const TextStyle(
-                        fontSize: 23, fontWeight: FontWeight.bold),
+                            : type == "signin"
+                                ? "Sign Up"
+                                : 'Cancel',
+                        bgColor: Colors.white,
+                        fontColor: Colors.black,
+                        ontap: () {
+                          setState(() {
+                            if (type == "signin") {
+                              type = "signup";
+                            } else if(type == "signup") {
+                              type = "signin";
+                            }else{
+                              type = "signup";
+                            }
+                          });
+                        },
+                      )
+                    ],
                   ),
-                  Text(
-                    type == "signup"
-                        ? 'signup up with your User Account'
-                        : type == "signin"
-                            ? "Connect with Your User account"
-                            : "Please Enter Your email",
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                   CustomTextField(
-                    hintText: "Email",
-                    iconData: Icons.email,
-                    controller:null ,
-                  ),
-                  type != "forgot"
-                      ?  CustomTextField(
-                          hintText: "Password",
-                          iconData: Icons.password_rounded,
-                          isPassword: true,
-                    controller: null,
-                        )
-                      : const SizedBox(),
-                  type != "signin"
-                      ? const SizedBox()
-                      : Align(
-                          alignment: Alignment.bottomRight,
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  type = "forgot";
-                                });
-                              },
-                              child: const Text(
-                                "Forgot Password",
-                                style: TextStyle(color: Colors.black),
-                              )),
-                        ),
-                  type == "signup"
-                      ? const CustomTextField(
-                          hintText: "confirm Password",
-                          iconData: Icons.password_rounded,
-                          isPassword: true,
-                        )
-                      : const SizedBox(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomButton(
-                    size: size,
-                    text: type == "signup"
-                        ? "Sign up"
-                        : type == "signin"
-                            ? "Sign In"
-                            : "Send Reset Email ",
-                    ontap: () {
-
-                    },
-                  ),
-                  CustomButton(
-                    size: size,
-                    text: type == "signup"
-                        ? "Sign In"
-                        : type == "signin"
-                            ? "Sign Up"
-                            : 'Cancel',
-                    bgColor: Colors.white,
-                    fontColor: Colors.black,
-                    ontap: () {
-                      setState(() {
-                        if (type == "signin") {
-                          type = "signup";
-                        } else if(type == "signup") {
-                          type = "signin";
-                        }else{
-                          type = "signup";
-                        }
-                      });
-                    },
-                  )
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            );
+          }
         ),
       ),
     );
