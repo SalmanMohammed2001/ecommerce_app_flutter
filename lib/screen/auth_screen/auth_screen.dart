@@ -96,6 +96,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     setState(() {
                                       type = "forgot";
                                     });
+                                    authStatus.clearFields();
                                   },
                                   child: const Text(
                                     "Forgot Password",
@@ -121,7 +122,14 @@ class _AuthScreenState extends State<AuthScreen> {
                                 ? "Sign In"
                                 : "Send Reset Email ",
                         ontap: () {
-                           authStatus.startSignUp();
+                          if(type == "signup"){
+                            authStatus.startSignUp(context);
+                          }else if(type == 'signin'){
+                            authStatus.startSignIn(context);
+                          }else if(type == "forgot"){
+                            authStatus..startSendPasswordResetEmail(context);
+                          }
+
                         },
                       ),
                       CustomButton(
@@ -134,6 +142,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         bgColor: Colors.white,
                         fontColor: Colors.black,
                         ontap: () {
+
+                          authStatus.clearFields();
                           setState(() {
                             if (type == "signin") {
                               type = "signup";

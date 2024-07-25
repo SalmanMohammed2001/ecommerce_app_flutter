@@ -1,6 +1,8 @@
 
 import 'package:ecommerce_app/controllers/auth_controller.dart';
+import 'package:ecommerce_app/provider/auth_screen_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -30,7 +32,9 @@ class CustomAppBar extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
            IconButton(onPressed: () {
-             AuthController.signOutAccount();
+             AuthController.signOutAccount(context);
+
+
 
            }, icon: const Icon(Icons.exit_to_app,color: Colors.white,))
           ],
