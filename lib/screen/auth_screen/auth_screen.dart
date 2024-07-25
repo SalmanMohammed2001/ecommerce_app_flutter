@@ -74,6 +74,11 @@ class _AuthScreenState extends State<AuthScreen> {
                       const SizedBox(
                         height: 10,
                       ),
+                     type == "signup" ? CustomTextField(
+                        hintText: "Name",
+                        iconData: Icons.person,
+                        controller:authStatus.nameController ,
+                      ):const SizedBox(),
                        CustomTextField(
                         hintText: "Email",
                         iconData: Icons.email,

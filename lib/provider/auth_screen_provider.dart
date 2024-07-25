@@ -11,6 +11,7 @@ class AuthScreenProvider extends ChangeNotifier{
   TextEditingController  _emailController =  TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
 
     // TextEditingController emailController(){
     //   return _emailController;
@@ -19,10 +20,12 @@ class AuthScreenProvider extends ChangeNotifier{
   TextEditingController get  emailController => _emailController;
   TextEditingController get  passwordController => _passwordController;
   TextEditingController get  confirmPasswordController => _confirmPasswordController;
+  TextEditingController get  nameController => _nameController;
 
 
 
   void startSignUp(BuildContext context){
+
     if(_emailController.text.trim().isEmpty){
        CustomDialog.showDialog(context,title:"something went wrong" ,content: "please insert your email");
     }else if(_passwordController.text.trim().length < 6){
@@ -30,6 +33,9 @@ class AuthScreenProvider extends ChangeNotifier{
 
     }else if(_passwordController.text != _confirmPasswordController.text){
       CustomDialog.showDialog(context,title:"something went wrong" ,content: "password Not Match");
+
+    }else if(_nameController.text.trim().isEmpty){
+      CustomDialog.showDialog(context,title:"something went wrong" ,content: "please insert your name");
 
     }else {
       CustomDialog.showLoader();
@@ -54,6 +60,7 @@ class AuthScreenProvider extends ChangeNotifier{
     _emailController.clear();
     _passwordController.clear();
     _confirmPasswordController.clear();
+    _nameController.clear();
     notifyListeners();
   }
 
