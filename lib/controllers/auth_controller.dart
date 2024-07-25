@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:ecommerce_app/controllers/user_controller.dart';
+import 'package:ecommerce_app/models/UserModel.dart';
 import 'package:ecommerce_app/provider/auth_screen_provider.dart';
 import 'package:ecommerce_app/utils/custom_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,14 +11,17 @@ import 'package:provider/provider.dart';
 
 class AuthController {
   static Future<void> createUserAccount(
-      String emailAddress, String password, BuildContext context) async {
+      String emailAddress, String password, String name,BuildContext context) async {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
             email: emailAddress,
             password: password,
           )
-          .then((value) => CustomDialog.dismissLoader());
+          .then((value) async{
+            UserModel user= UserModel(name: name, email: value.user!.email!, uid: value.user!.uid);
+         await   UserController().saveUserData(user, context);
+      });
     } on FirebaseAuthException catch (e) {
       CustomDialog.dismissLoader();
       if (e.code == 'invalid-email') {

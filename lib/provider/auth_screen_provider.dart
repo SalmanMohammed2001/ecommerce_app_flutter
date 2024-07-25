@@ -39,7 +39,7 @@ class AuthScreenProvider extends ChangeNotifier{
 
     }else {
       CustomDialog.showLoader();
-      AuthController.createUserAccount(_emailController.text, _passwordController.text,context);
+      AuthController.createUserAccount(_emailController.text, _passwordController.text,_nameController.text,context);
     }
 
   }
